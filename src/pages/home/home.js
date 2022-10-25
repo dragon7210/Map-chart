@@ -115,7 +115,7 @@ const Home = () => {
                 data-for="registerTip1"
               />
               <ReactTooltip id="registerTip1" place="top" effect="solid">
-                {third}
+                Total capacity: {third}
               </ReactTooltip>
               <div
                 className="first"
@@ -124,7 +124,7 @@ const Home = () => {
                 data-for="registerTip2"
               />
               <ReactTooltip id="registerTip2" place="top" effect="solid">
-                {first}
+                Requested: {first}
               </ReactTooltip>
               <div
                 className="second"
@@ -133,7 +133,7 @@ const Home = () => {
                 data-for="registerTip3"
               />
               <ReactTooltip id="registerTip3" place="top" effect="solid">
-                {second}
+                Assigned: {second}
               </ReactTooltip>
             </div>
           </span>
@@ -163,7 +163,7 @@ const Home = () => {
                   place="top"
                   effect="solid"
                 >
-                  {third}
+                  Total capacity: {third}
                 </ReactTooltip>
                 <div
                   className="first"
@@ -176,7 +176,7 @@ const Home = () => {
                   place="top"
                   effect="solid"
                 >
-                  {element[0]}
+                  Requested: {element[0]}
                 </ReactTooltip>
                 <div
                   className="second"
@@ -189,7 +189,7 @@ const Home = () => {
                   place="top"
                   effect="solid"
                 >
-                  {element[1]}
+                  Assigned: {element[1]}
                 </ReactTooltip>
               </div>
             </span>
