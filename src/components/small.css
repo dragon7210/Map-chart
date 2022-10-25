@@ -1,0 +1,30 @@
+.small{
+  width: 180px;
+  border: solid 2px greenyellow;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
+.center{
+  text-align: center;
+}
+.center-button{
+  border: green solid;
+  margin: 4px;
+  color: green;
+  border-radius: 5px;
+}
+.title{
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0px;
+}
+.date{
+  font-size: 8px;
+  font-weight: 100;
+}
+.bottom{
+  font-size: 8px;
+  margin: 1px;
+  padding: 2px 0px;
+}
