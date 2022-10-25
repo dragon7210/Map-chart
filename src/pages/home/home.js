@@ -69,7 +69,11 @@ const Home = () => {
         <button className="bar-button">Priority</button>
         <button className="bar-button">Project</button>
       </div>
-      <GoogleMap defaultZoom={1} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
+      <GoogleMap
+        bootstrapURLKeys={{ key: "" }}
+        defaultZoom={8}
+        defaultCenter={{ lat: -34.397, lng: 150.644 }}
+      >
         {search !== 28 ? (
           <span lat={Position[search][0]} lng={Position[search][1]}>
             <div
