@@ -115,43 +115,49 @@ const Home = () => {
             <div
               className="chart"
               style={{
-                top: -third / 20 + "px",
+                top:
+                  -[first, second, third].sort(function (a, b) {
+                    return b - a;
+                  })[0] /
+                    20 +
+                  "px",
               }}
             >
-              <div
-                className="third"
-                style={{
-                  height:
-                    [first, second, third].sort(function (a, b) {
-                      return b - a;
-                    })[0] /
-                      20 +
-                    "px",
-                }}
-                data-tip
-                data-for="registerTip1"
-              />
-              <ReactTooltip id="registerTip1" place="top" effect="solid">
-                Total capacity: {third}
-              </ReactTooltip>
-              <div
-                className="first"
-                style={{ height: first / 20 + "px" }}
-                data-tip
-                data-for="registerTip2"
-              />
-              <ReactTooltip id="registerTip2" place="top" effect="solid">
-                Requested: {first}
-              </ReactTooltip>
-              <div
-                className="second"
-                style={{ height: second / 20 + "px" }}
-                data-tip
-                data-for="registerTip3"
-              />
-              <ReactTooltip id="registerTip3" place="top" effect="solid">
-                Assigned: {second}
-              </ReactTooltip>
+              <div>
+                <div
+                  className="third"
+                  style={{
+                    height:  third  / 20 + "px",
+                  }}
+                  data-tip
+                  data-for="registerTip1"
+                />
+                <ReactTooltip id="registerTip1" place="top" effect="solid">
+                  Total capacity: {third}
+                </ReactTooltip>
+              </div>
+              <div>
+                <div
+                  className="first"
+                  style={{ height: first / 20 + "px" }}
+                  data-tip
+                  data-for="registerTip2"
+                />
+                <ReactTooltip id="registerTip2" place="top" effect="solid">
+                  Requested: {first}
+                </ReactTooltip>
+              </div>
+              <div>
+                <div
+                  className="second"
+                  style={{ height: second / 20 + "px" }}
+                  data-tip
+                  data-for="registerTip3"
+                />
+                <ReactTooltip id="registerTip3" place="top" effect="solid">
+                  Assigned: {second}
+                </ReactTooltip>
+              </div>
             </div>
           </span>
         ) : (
