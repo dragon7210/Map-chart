@@ -47,7 +47,9 @@ const Home = () => {
         let sum3 = 0;
         for (let item of all) {
           if (item[0] === element) {
-            sum3 = parseInt(item[13].split(" ")[1]);
+            sum3 = parseInt(
+              item[13].slice(element.length + 1, item[13].length)
+            );
             break;
           }
         }
@@ -71,10 +73,11 @@ const Home = () => {
     let num;
     for (let item of all) {
       if (item[0] === selected) {
-        num = parseInt(item[13].split(" ")[1]);
+        num = parseInt(item[13].slice(selected.length + 1, item[13].length));
         break;
       }
     }
+
     setThird(num);
     setFirst(sum1);
     setSecond(sum2);
@@ -168,45 +171,51 @@ const Home = () => {
                     "px",
                 }}
               >
-                <div
-                  className="third"
-                  style={{ height: element[2] / 20 + "px" }}
-                  data-tip
-                  data-for={`registerTip1` + index}
-                />
-                <ReactTooltip
-                  id={`registerTip1` + index}
-                  place="top"
-                  effect="solid"
-                >
-                  Total capacity: {element[2]}
-                </ReactTooltip>
-                <div
-                  className="first"
-                  style={{ height: element[0] / 20 + "px" }}
-                  data-tip
-                  data-for={`registerTip2` + index}
-                />
-                <ReactTooltip
-                  id={`registerTip2` + index}
-                  place="top"
-                  effect="solid"
-                >
-                  Requested: {element[0]}
-                </ReactTooltip>
-                <div
-                  className="second"
-                  style={{ height: element[1] / 20 + "px" }}
-                  data-tip
-                  data-for={`registerTip3` + index}
-                />
-                <ReactTooltip
-                  id={`registerTip3` + index}
-                  place="top"
-                  effect="solid"
-                >
-                  Assigned: {element[1]}
-                </ReactTooltip>
+                <div>
+                  <div
+                    className="third"
+                    style={{ height: element[2] / 20 + "px" }}
+                    data-tip
+                    data-for={`registerTip1` + index}
+                  />
+                  <ReactTooltip
+                    id={`registerTip1` + index}
+                    place="top"
+                    effect="solid"
+                  >
+                    Total capacity: {element[2]}
+                  </ReactTooltip>
+                </div>
+                <div>
+                  <div
+                    className="first"
+                    style={{ height: element[0] / 20 + "px" }}
+                    data-tip
+                    data-for={`registerTip2` + index}
+                  />
+                  <ReactTooltip
+                    id={`registerTip2` + index}
+                    place="top"
+                    effect="solid"
+                  >
+                    Requested: {element[0]}
+                  </ReactTooltip>
+                </div>
+                <div>
+                  <div
+                    className="second"
+                    style={{ height: element[1] / 20 + "px" }}
+                    data-tip
+                    data-for={`registerTip3` + index}
+                  />
+                  <ReactTooltip
+                    id={`registerTip3` + index}
+                    place="top"
+                    effect="solid"
+                  >
+                    Assigned: {element[1]}
+                  </ReactTooltip>
+                </div>
               </div>
             </span>
           ))
