@@ -54,7 +54,7 @@ const Home = () => {
           }
         }
         all.forEach((alls) => {
-          sum1 += alls[0] === element ? parseNumber(alls[9].toString()) : 0;
+          sum1 += alls[0] === element ? parseNumber(alls[10].toString()) : 0;
           sum2 += alls[0] === element ? parseNumber(alls[8].toString()) : 0;
         });
         newArray.push([sum1, sum2, sum3]);
@@ -67,10 +67,10 @@ const Home = () => {
     let sum1 = 0;
     let sum2 = 0;
     all.forEach((alls) => {
-      sum1 += alls[0] === selected ? parseNumber(alls[9].toString()) : 0;
+      sum1 += alls[0] === selected ? parseNumber(alls[10].toString()) : 0;
       sum2 += alls[0] === selected ? parseNumber(alls[8].toString()) : 0;
     });
-    let num;
+    let num = 0;
     for (let item of all) {
       if (item[0] === selected) {
         num = parseInt(item[13].slice(selected.length + 1, item[13].length));
@@ -127,7 +127,7 @@ const Home = () => {
                 <div
                   className="third"
                   style={{
-                    height:  third  / 20 + "px",
+                    height: third / 20 + "px",
                   }}
                   data-tip
                   data-for="registerTip1"
@@ -180,7 +180,7 @@ const Home = () => {
                 <div>
                   <div
                     className="third"
-                    style={{ height: element[2] / 20 + "px" }}
+                    style={{ height: element[0] / 20 + "px" }}
                     data-tip
                     data-for={`registerTip1` + index}
                   />
@@ -189,13 +189,13 @@ const Home = () => {
                     place="top"
                     effect="solid"
                   >
-                    Total capacity: {element[2]}
+                    Total capacity: {element[0]}
                   </ReactTooltip>
                 </div>
                 <div>
                   <div
                     className="first"
-                    style={{ height: element[0] / 20 + "px" }}
+                    style={{ height: element[2] / 20 + "px" }}
                     data-tip
                     data-for={`registerTip2` + index}
                   />
@@ -204,7 +204,7 @@ const Home = () => {
                     place="top"
                     effect="solid"
                   >
-                    Requested: {element[0]}
+                    Requested: {element[2]}
                   </ReactTooltip>
                 </div>
                 <div>
