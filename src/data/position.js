@@ -29,4 +29,4 @@ export const Position = [
   [-32.5228, -55.7658],
 ];
 
-export const Data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+export const Data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];

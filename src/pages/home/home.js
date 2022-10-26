@@ -14,7 +14,7 @@ const Home = () => {
   const [search, setSearch] = useState(28);
   const [first, setFirst] = useState(0);
   const [second, setSecond] = useState(0);
-  const [third, setThird] = useState(30);
+  const [third, setThird] = useState(0);
   const [display, setDisplay] = useState([]);
 
   const navigate = useNavigate();
@@ -24,7 +24,9 @@ const Home = () => {
       setCountryName(await country());
     })();
     (async function () {
-      setAll(await AllData());
+      const records = await AllData();
+      const temp = records.slice(1, records.length);
+      setAll(temp);
     })();
   }, []);
 
@@ -32,7 +34,7 @@ const Home = () => {
     if (!str) {
       return 0;
     }
-    const num = Number(str.replaceAll("+", ""));
+    const num = Number(str);
     return isNaN(num) ? 0 : num;
   };
   const handleChange = (e) => {
@@ -40,18 +42,20 @@ const Home = () => {
     if (e.target.value === "all") {
       setSelCountry("all");
       countryName.forEach((element) => {
-        if (element === "") return;
         let sum1 = 0;
         let sum2 = 0;
+        let sum3 = 0;
+        for (let item of all) {
+          if (item[0] === element) {
+            sum3 = parseInt(item[13].split(" ")[1]);
+            break;
+          }
+        }
         all.forEach((alls) => {
-          sum1 +=
-            alls.site_country === element ? parseNumber(alls.difference) : 0;
-          sum2 +=
-            alls.site_country === element
-              ? parseNumber(alls.requested_trials)
-              : 0;
+          sum1 += alls[0] === element ? parseNumber(alls[9].toString()) : 0;
+          sum2 += alls[0] === element ? parseNumber(alls[8].toString()) : 0;
         });
-        newArray.push([sum1, sum2]);
+        newArray.push([sum1, sum2, sum3]);
       });
       setDisplay(newArray);
       return;
@@ -60,20 +64,22 @@ const Home = () => {
     const selected = e.target.value;
     let sum1 = 0;
     let sum2 = 0;
-    all.forEach((element) => {
-      sum1 +=
-        element.site_country === selected ? parseNumber(element.difference) : 0;
-      sum2 +=
-        element.site_country === selected
-          ? parseNumber(element.requested_trials)
-          : 0;
+    all.forEach((alls) => {
+      sum1 += alls[0] === selected ? parseNumber(alls[9].toString()) : 0;
+      sum2 += alls[0] === selected ? parseNumber(alls[8].toString()) : 0;
     });
-
+    let num;
+    for (let item of all) {
+      if (item[0] === selected) {
+        num = parseInt(item[13].split(" ")[1]);
+        break;
+      }
+    }
+    setThird(num);
     setFirst(sum1);
     setSecond(sum2);
     setSearch(countryName.indexOf(selected));
   };
-  console.log(display);
   return (
     <div className="map">
       <div className="tool">
@@ -85,6 +91,7 @@ const Home = () => {
         />
         <button className="bar-button">Indication</button>
         <select value={selCountry} onChange={handleChange}>
+          <option value="" disabled></option>
           <option value="all">All</option>
           {countryName.map((element, index) => (
             <option key={index} value={element}>
@@ -105,12 +112,19 @@ const Home = () => {
             <div
               className="chart"
               style={{
-                top: first > second ? -first / 5 + "px" : -second / 5 + "px",
+                top: -third / 20 + "px",
               }}
             >
               <div
                 className="third"
-                style={{ height: third / 5 + "px" }}
+                style={{
+                  height:
+                    [first, second, third].sort(function (a, b) {
+                      return b - a;
+                    })[0] /
+                      20 +
+                    "px",
+                }}
                 data-tip
                 data-for="registerTip1"
               />
@@ -119,7 +133,7 @@ const Home = () => {
               </ReactTooltip>
               <div
                 className="first"
-                style={{ height: first / 5 + "px" }}
+                style={{ height: first / 20 + "px" }}
                 data-tip
                 data-for="registerTip2"
               />
@@ -128,7 +142,7 @@ const Home = () => {
               </ReactTooltip>
               <div
                 className="second"
-                style={{ height: second / 5 + "px" }}
+                style={{ height: second / 20 + "px" }}
                 data-tip
                 data-for="registerTip3"
               />
@@ -147,14 +161,16 @@ const Home = () => {
                 className="chart"
                 style={{
                   top:
-                    element[0] > element[1]
-                      ? -element[0] / 5 + "px"
-                      : -element[1] / 5 + "px",
+                    -element.sort(function (a, b) {
+                      return b - a;
+                    })[0] /
+                      20 +
+                    "px",
                 }}
               >
                 <div
                   className="third"
-                  style={{ height: third / 5 + "px" }}
+                  style={{ height: element[2] / 20 + "px" }}
                   data-tip
                   data-for={`registerTip1` + index}
                 />
@@ -163,11 +179,11 @@ const Home = () => {
                   place="top"
                   effect="solid"
                 >
-                  Total capacity: {third}
+                  Total capacity: {element[2]}
                 </ReactTooltip>
                 <div
                   className="first"
-                  style={{ height: element[0] / 5 + "px" }}
+                  style={{ height: element[0] / 20 + "px" }}
                   data-tip
                   data-for={`registerTip2` + index}
                 />
@@ -180,7 +196,7 @@ const Home = () => {
                 </ReactTooltip>
                 <div
                   className="second"
-                  style={{ height: element[1] / 5 + "px" }}
+                  style={{ height: element[1] / 20 + "px" }}
                   data-tip
                   data-for={`registerTip3` + index}
                 />

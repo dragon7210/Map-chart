@@ -5,3 +5,6 @@
   justify-content: space-around;
   width: 100%;
 }
+.back .small{
+  cursor: pointer;
+}

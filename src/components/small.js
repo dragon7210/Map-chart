@@ -3,7 +3,7 @@ import "./small.css";
 const Small = ({ year, project, country, ton, trial }) => {
   return (
     <div className="small">
-      <p className="title">Northern Hemisphere Test</p>
+      <p className="title">Recommendation name</p>
       <p className="date">25/11/2022</p>
       <div className="center">
         <button className="center-button">
